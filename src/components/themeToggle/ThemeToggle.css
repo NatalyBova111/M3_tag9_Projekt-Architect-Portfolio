@@ -1,0 +1,22 @@
+.theme-icon-btn {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;               
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.theme-icon-btn img {
+  width: 24px;               
+  height: 24px;
+  display: block;
+}
+.theme-icon-btn:focus-visible {
+  outline: 2px solid var(--border);
+  outline-offset: 2px;
+}

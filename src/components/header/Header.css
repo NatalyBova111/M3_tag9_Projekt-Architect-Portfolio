@@ -1,0 +1,74 @@
+/* === Brand === */
+.brand { display: inline-flex; align-items: center; }
+.brand-logo { height: 43px; width: auto; display: block; } /* сохраняет пропорции */
+
+/* === Header (scrolls away) === */
+.site-header {
+  position: static;                  
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  z-index: 10;
+}
+
+.header-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* бренд | меню | действия */
+  align-items: center;
+  height: 64px;
+  gap: 1rem;
+}
+
+/* === Nav === */
+.nav {
+  justify-self: center;
+  display: flex;
+  gap: 2.2rem;
+}
+
+.nav a {
+  position: relative;
+  display: inline-block;
+  padding: .35rem .4rem;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: .72rem;
+  color: var(--muted);
+  opacity: .95;
+  text-decoration: none;
+  outline: 0;
+}
+
+.nav a:hover,
+.nav a.active { color: var(--text); opacity: 1; }
+
+/* две тонкие линии сверху/снизу у активного */
+.nav a.active::before,
+.nav a.active::after {
+  content: "";
+  position: absolute; left: 0; right: 0; height: 2px;
+  background: currentColor; opacity: .35;
+}
+.nav a.active::before { top: -6px; }
+.nav a.active::after  { bottom: -6px; }
+
+/* keyboard focus */
+.nav a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* actions (theme toggle) */
+.header-actions { display: flex; align-items: center; gap: .5rem; }
+
+/* dark theme colors for nav */
+:root[data-theme="dark"] .nav a { color: #9aa0a6; opacity: .95; }
+:root[data-theme="dark"] .nav a.active,
+:root[data-theme="dark"] .nav a:hover { color: #e9eaee; }
+
+/* === Responsive === */
+@media (max-width: 780px) {
+  .nav { gap: 1rem; }
+  .nav a { letter-spacing: .18em; font-size: .68rem; }
+  .brand-logo { height: 36px; }
+}

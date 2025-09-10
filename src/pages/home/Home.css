@@ -1,0 +1,303 @@
+/* HERO */
+/* ===== HERO по макету ===== */
+/* ===== HERO (минус 30%, пропорция сохранена, кнопка в углу) ===== */
+:root{
+  /* было 770px → 770 * 0.7 = 539px */
+  --hero-w: calc(770px * .7);
+}
+
+.hero-inner{
+  display: grid;
+  grid-template-columns: 1fr var(--hero-w);  /* текст | уменьшенная картинка */
+  gap: 2rem;
+  align-items: start;
+}
+
+/* заголовок остаётся как был (Roboto 300/700, 64/64) */
+.hero-title{ margin:0; line-height:64px; }
+.hero-kicker{ display:block; font-weight:300; font-size:64px; line-height:64px; color:var(--muted); }
+.hero-lead  { display:block; font-weight:700; font-size:64px; line-height:64px; color:var(--text); }
+
+/* картинка с сохранением фигмовской пропорции 770×829 */
+.hero-art{
+  position: relative;
+  width: var(--hero-w);
+  aspect-ratio: 770 / 829;   /* высота посчитается автоматически (~580px) */
+  overflow: hidden;
+}
+.hero-art img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* кнопка прижата к левому нижнему углу без отступов */
+.hero-cta{ position: absolute; left: 0; bottom: 0; }
+.hero-cta .btn{ margin: 0; }
+/* Центрируем блок текста относительно высоты картинки */
+.hero-text{
+  /* растянуть элемент на высоту строки грида (высота картинки) */
+  align-self: stretch;
+
+  /* а внутри выровнять содержимое по центру по вертикали */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* На узких экранах (одна колонка) возвращаем обычное поведение */
+@media (max-width: 900px){
+  .hero-text{
+    align-self: auto;
+    justify-content: flex-start;
+  }
+}
+/* адаптив — на узких экранах одна колонка, картинка тянется по ширине */
+@media (max-width: 900px){
+  .hero-inner{ grid-template-columns: 1fr; }
+  .hero-art{ width: 100%; max-width: var(--hero-w); margin-inline: 0; }
+}
+
+
+/* ===== About  ===== */
+.about-tiles {
+  padding: 1.5rem 0 2rem;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr; 
+  gap: 2rem;
+  align-items: start;
+}
+
+.about-tiles__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 160px 140px;   /* высоты карточек */
+  gap: 1rem;
+  grid-template-areas:
+    "t1 t2"
+    "t3 t2"; /* нижняя левая отдельная, правая тянется на 2 ряда */
+}
+
+/* карточки */
+.tile {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+}
+.t1 { grid-area: t1; }
+.t2 { grid-area: t2; }
+.t3 { grid-area: t3; }
+
+
+.about-readmore {
+  display: inline-block;
+  margin-top: .8rem;
+  font-size: .85rem;
+  letter-spacing: .08em;
+  color: var(--text);
+  opacity: .9;
+  text-decoration: none;
+}
+.about-readmore:hover { opacity: 1; }
+
+/* адаптив */
+@media (max-width: 1024px) {
+  .about-tiles {
+    grid-template-columns: 1fr;
+  }
+  .about-tiles__grid {
+    grid-template-rows: 160px 140px;
+    grid-template-areas:
+      "t1 t2"
+      "t3 t3"; 
+  }
+}
+@media (max-width: 640px) {
+  .about-tiles__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 160px 160px 140px;
+    grid-template-areas:
+      "t1"
+      "t2"
+      "t3";
+  }
+}
+
+title { color: var(--muted); font-weight: 700; }
+
+/* ===== Main Focus ===== */
+.focus-v2 { padding: 1.5rem 0 2rem; }
+
+
+.focus-v2__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 3rem;
+  align-items: start;
+}
+
+.focus-v2__item {
+  position: relative;
+  padding-left: 82px;          
+  min-height: 120px;
+}
+
+.focus-v2__num {
+  position: absolute;
+  left: 0;
+  top: -.25rem;
+  font-size: clamp(72px, 12vw, 140px);
+  line-height: .9;
+  font-weight: 800;
+  color: var(--text);
+  opacity: .08;                /* бледная цифра за текстом */
+  pointer-events: none;
+  user-select: none;
+}
+
+.focus-v2__item p {
+  margin: 0;
+  max-width: 42ch;
+}
+
+/* Адаптив */
+@media (max-width: 900px) {
+  .focus-v2__grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .focus-v2__item { padding-left: 70px; }
+}
+
+/* ===== Our Projects  ===== */
+.projects-v3 { padding: 1.5rem 0 2rem; }
+
+/* Сетка из 6 колонок: сверху каждая по 3, снизу каждая по 2 */
+.projects-v3__grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* элементы */
+.proj { position: relative; overflow: hidden; border-radius: 8px; background: transparent; }
+.proj > img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 50%; }
+
+/* верхний ряд — 2 равные */
+.proj.a { grid-column: 1 / span 3; height: 220px; }
+.proj.b { grid-column: 4 / span 3; height: 220px; }
+
+/* нижний ряд — 3 равные */
+.proj.c { grid-column: 1 / span 2; height: 160px; }
+.proj.d { grid-column: 3 / span 2; height: 160px; }
+.proj.e { grid-column: 5 / span 2; height: 160px; }
+
+
+.proj .overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.25) 60%, rgba(0,0,0,0));
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 22px; color: #fff;
+}
+.proj .overlay h3 { margin: 0 0 10px; font-size: clamp(22px, 3.6vw, 44px); font-weight: 800; line-height: 1.05; }
+
+.proj .overlay .ghost,
+.proj .overlay .btn-ghost {   
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .85rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.proj .overlay .ghost:hover,
+.proj .overlay .btn-ghost:hover {
+  text-decoration: underline;     
+}
+.projects-v3__actions {
+  text-align: right;
+  margin-top: .9rem;
+}
+.btn-cta {
+  display: inline-block;
+  padding: .55rem 1.1rem;
+  border-radius: 4px;
+  font-size: .78rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #111827;   
+  color: #fff;           
+  border: 1px solid #111827;
+  transition: opacity .15s ease, transform .05s ease;
+}
+.btn-cta:hover { opacity: .9; }
+.btn-cta:active { transform: translateY(1px); }
+
+/* Тёмная тема */
+:root[data-theme="dark"] .btn-cta {
+  background: #ffffff;
+  color: #111827;
+  border-color: #ffffff;   
+}
+
+/* адаптив */
+@media (max-width: 900px) {
+  .projects-v3__grid { grid-template-columns: 1fr; }
+  .proj.a, .proj.b, .proj.c, .proj.d, .proj.e { grid-column: auto; height: 200px; }
+}
+
+
+
+/* CONTACT SHORT */
+.contact-short { padding: 1.5rem 0 2.5rem; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.contact-form { padding: 1rem; display: grid; gap: .8rem; border-radius: 16px; }
+.contact-form label { display: grid; gap: .35rem; font-size: .9rem; }
+.contact-form input, .contact-form textarea {
+  width: 100%; padding: .7rem .8rem; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--bg); color: var(--text);
+}
+
+
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-img img { height: 360px; }
+  .about-grid { grid-template-columns: 1fr; grid-template-areas: none; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+/* ===== Contact teaser on Main ===== */
+.contact-teaser { padding: 1.5rem 0 2.5rem; }
+
+.contact-teaser__grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) 1fr;
+  gap: 20px 28px;
+  align-items: start;
+}
+
+.contact-teaser__text p { margin: 0; max-width: 50ch; }
+
+.contact-teaser__media { margin: 0; }
+.contact-teaser__media img {
+  width: 100%;
+  height: 300px;          /* аккуратная высота на главной */
+  object-fit: cover;      /* кадрируем по центру, без полей */
+  object-position: 50% 50%;
+  display: block;
+}
+
+/* адаптив */
+@media (max-width: 900px) {
+  .contact-teaser__grid { grid-template-columns: 1fr; }
+  .contact-teaser__media img { height: 220px; }
+}

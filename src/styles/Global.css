@@ -1,0 +1,120 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+/* Base / Reset */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+
+:root {
+  --font-sans: "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+html {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+
+*, *::before, *::after { font: inherit; }
+button, input, textarea, select { font: inherit; }
+
+/* Links */
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Layout */
+.container { width: min(1120px, 92%); margin: 0 auto; }
+.grid { display: grid; gap: 1rem; }
+
+/* Card */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: var(--shadow);
+}
+
+/* Utilities */
+hr.sep { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+.muted { color: var(--muted); }
+
+/* ===== Section headings  ===== */
+.section-heading {
+  margin: 0 0 12px;
+  font-weight: 300;
+  font-size: 64px;
+  line-height: 64px;
+  letter-spacing: 0;
+}
+:root[data-theme="dark"] .section-heading {
+  color: rgba(189, 189, 189, 1);
+}
+
+/* ===== Buttons ===== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.6rem;
+  width:222px;
+  height:71px;
+  padding:0;
+  border:1px solid currentColor;
+  border-radius:0;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:.86rem;
+  line-height:1;
+  text-decoration:none;
+  cursor:pointer;
+  transition:opacity .15s ease, transform .06s ease;
+}
+.btn:active{ transform:translateY(1px); }
+
+
+.btn--white{
+  background:#fff;
+  color:#111827;
+  border-color:#111827;
+}
+.btn--white:hover{ opacity:.9; }
+
+
+.btn--cta{
+  background:#333333;   /* light */
+  color:#ffffff;
+  border-color:#333333;
+}
+:root[data-theme="dark"] .btn--cta{
+  background:#ffffff;   /* dark */
+  color:#111827;
+  border-color:#ffffff;
+}
+.btn--cta:hover{ opacity:.9; }
+
+:root:not([data-theme="dark"]) .btn--cta:hover,
+:root:not([data-theme="dark"]) .btn--cta:focus-visible {
+  color:#000;
+  border-color:#000;
+  opacity:1;
+}
+
+img { border-radius: 0 !important; }
+figure,
+.card img,
+.hero-img,
+.about-tiles__grid .tile,
+.projects-v3__grid .proj,
+.proj img,
+.contact-photo {
+  border-radius: 0 !important;
+}
